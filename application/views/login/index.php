@@ -1,4 +1,3 @@
-
 <div class="container">
     <!--vertical align on parent using my-auto-->
     <div class="row h-100">
@@ -8,7 +7,8 @@
                     <div class="row">
                         <div class="col-md-3"></div>
                         <div class="col-md-6 text-center">
-                            <h2>Please Login <br><a class="small">or</a> <br><a href="register">create new account</a></h2>
+                            <h2>Please Login <br><a class="small">or</a> <br><a href="register">create new account</a>
+                            </h2>
                             <hr>
                         </div>
                     </div>
@@ -18,7 +18,8 @@
                             <div class="form-group has-danger">
                                 <label class="sr-only" for="email">Username</label>
                                 <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                                    <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                                    <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i>
+                                    </div>
                                     <input type="text" name="username" class="form-control" id="username"
                                            placeholder="Username" required autofocus>
                                 </div>
@@ -45,7 +46,7 @@
                             </div>
                         </div>
                     </div>
-                    <?php if(isset($this->error_msg)) { ?>
+                    <?php if (isset($this->error_msg)) { ?>
                         <div class="row">
                             <div class="col-md-3"></div>
                             <div class="col-md-6">

@@ -1,4 +1,3 @@
-
 <div class="container">
     <!--vertical align on parent using my-auto-->
     <div class="row h-100">

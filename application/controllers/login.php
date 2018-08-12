@@ -5,9 +5,9 @@
  * Date: 08/08/2018
  * Time: 20:26
  */
-require_once APP.'core/Controller.php';
-require_once APP.'models/UserModel.php';
-require_once APP.'libs/ValidateUser.php';
+require_once APP . 'core/Controller.php';
+require_once APP . 'models/UserModel.php';
+require_once APP . 'libs/ValidateUser.php';
 
 class login extends Controller
 {
@@ -18,12 +18,13 @@ class login extends Controller
         $this->validator = new ValidateUser();
     }
 
-    private function login() {
-        if(isset($_POST['username']) && isset($_POST['password'])) {
+    private function login()
+    {
+        if (isset($_POST['username']) && isset($_POST['password'])) {
             $username = $_POST['username'];
             $password = $_POST['password'];
 
-            $user = $this->model->get_user_by('username',$username);
+            $user = $this->model->get_user_by('username', $username);
             if (isset($user->username) && password_verify($password, $user->password)) {
                 return $user;
             }
@@ -32,12 +33,12 @@ class login extends Controller
         return 'none';
     }
 
-    public function index() {
-        if($this->validator->is_logged_in()) {
+    public function index()
+    {
+        if ($this->validator->is_logged_in()) {
             $this->view->error_message = 'You have logged in.';
             $this->view->render('error/index');
-        }
-        else {
+        } else {
             $status = $this->login();
             if ($status === 'fail') {
                 $this->view->error_msg = "Wrong username or password.";

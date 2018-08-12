@@ -1,4 +1,3 @@
-
 <div class="container">
     <!--vertical align on parent using my-auto-->
     <div class="row h-100">
@@ -18,34 +17,38 @@
                             <div class="form-group row">
                                 <label for="username" class="col-sm-4 col-form-label">Username</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="username" name="username" value="<?php echo isset($_POST['username'])? htmlspecialchars($_POST['username'],ENT_QUOTES):'' ?>"
-                                    placeholder="Username"
+                                    <input type="text" class="form-control" id="username" name="username"
+                                           value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username'], ENT_QUOTES) : '' ?>"
+                                           placeholder="Username"
                                     >
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="new-password" class="col-sm-4 col-form-label">New password</label>
                                 <div class="col-sm-8">
-                                    <input type="password" class="form-control" id="new-password" name="password" placeholder="New password">
+                                    <input type="password" class="form-control" id="new-password" name="password"
+                                           placeholder="New password">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="re-password" class="col-sm-4 col-form-label">Re-enter</label>
                                 <div class="col-sm-8">
-                                    <input type="password" class="form-control" id="re-password" name="repassword" placeholder="Re-enter new password">
+                                    <input type="password" class="form-control" id="re-password" name="repassword"
+                                           placeholder="Re-enter new password">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="email" class="col-sm-4 col-form-label">Email</label>
                                 <div class="col-sm-8">
-                                    <input type="email" class="form-control" id="email" name ="email" value="<?php echo isset($_POST['email'])? htmlspecialchars($_POST['email'],ENT_QUOTES):'' ?>"
-                                    placeholder="abc@example.com">
+                                    <input type="email" class="form-control" id="email" name="email"
+                                           value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email'], ENT_QUOTES) : '' ?>"
+                                           placeholder="abc@example.com">
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <?php if(isset($this->error_message)) { ?>
+                    <?php if (isset($this->error_message)) { ?>
                         <div class="row">
                             <div class="col-md-3"></div>
                             <div class="col-md-6">

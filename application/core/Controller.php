@@ -1,5 +1,6 @@
 <?php
-require_once APP.'core/View.php';
+require_once APP . 'core/View.php';
+
 class Controller
 {
     /**

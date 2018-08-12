@@ -9,6 +9,7 @@ require_once APP . 'core/Controller.php';
 require_once APP . 'models/UserModel.php';
 require_once APP . 'models/ResetPasswordModel.php';
 require_once APP . 'libs/ValidateUser.php';
+
 class reset extends Controller
 {
     public function __construct()
@@ -19,69 +20,68 @@ class reset extends Controller
         $this->validator = new ValidateUser();
     }
 
-    private function send_reset_email() {
-        if(!isset($_POST['email'])) {
+    private function send_reset_email()
+    {
+        if (!isset($_POST['email'])) {
             return;
         }
-        if(!$this->validator->is_valid_email($_POST['email'])){
+        if (!$this->validator->is_valid_email($_POST['email'])) {
             return 'Invalid email address.';
         }
         $user = $this->userModel->get_user_by('email', $_POST['email']);
-        if(isset($user->username)){
+        if (isset($user->username)) {
             $token = bin2hex(random_bytes(30));
             $validator = bin2hex(random_bytes(30));
             $this->resetModel->add($user->username, $user->email, $token, $validator);
-            $cmd = APP.'libs/send.py '.$user->email." ".$user->username." ".$token." &";
+            $cmd = APP . 'libs/send.py ' . $user->email . " " . $user->username . " " . $token . " &";
             exec($cmd);
         }
 
         return 'success';
     }
 
-    private function is_expried($time) {
+    private function is_expried($time)
+    {
 
 
         $now = new DateTime('-1hours');
-        return $now>$time;
+        return $now > $time;
     }
 
-    public function index() {
-        if($this->validator->is_logged_in()) {
+    public function index()
+    {
+        if ($this->validator->is_logged_in()) {
             $this->view->error_message = 'You have logged in.';
             $this->view->render('error/index');
-        }
-        else {
+        } else {
             $status = $this->send_reset_email();
-            if(isset($status)) {
-                if($status === 'success') {
+            if (isset($status)) {
+                if ($status === 'success') {
                     $this->view->render('reset/request_success');
-                }
-                else {
+                } else {
                     $this->view->status = $status;
                     $this->view->render('reset/index');
                 }
-            }
-            else {
+            } else {
                 $this->view->render('reset/index');
             }
         }
     }
 
-    public function reset() {
-        if($this->validator->is_logged_in()) {
+    public function reset()
+    {
+        if ($this->validator->is_logged_in()) {
             $this->view->error_message = 'You have logged in.';
             $this->view->render('error/index');
-        }
-        else {
-            if(!isset($_GET['token'])){
+        } else {
+            if (!isset($_GET['token'])) {
                 $_GET['token'] = 'none';
             }
             $reseter = $this->resetModel->select_by('token', $_GET['token']);
-            if(!isset($reseter->username)){
+            if (!isset($reseter->username)) {
                 $this->view->error_message = "Your token is invalid or expried.";
                 $this->view->render('error/index');
-            }
-            else {
+            } else {
                 $user = $this->userModel->get_user_by('email', $reseter->email);
 
                 if (!isset($user->username) || $user->username != $reseter->username
@@ -102,12 +102,13 @@ class reset extends Controller
 
     }
 
-    private function change_password() {
-        if(!isset($_POST['newpassword']) || !isset($_POST['repassword']) || !isset($_POST['validator'])){
+    private function change_password()
+    {
+        if (!isset($_POST['newpassword']) || !isset($_POST['repassword']) || !isset($_POST['validator'])) {
             return;
         }
 
-        $reseter = $this->resetModel->select_by('validator',$_POST['validator']);
+        $reseter = $this->resetModel->select_by('validator', $_POST['validator']);
         if (!isset($reseter->username)) {
             return 'Your token is invalid or expried';
         }
@@ -118,19 +119,18 @@ class reset extends Controller
             return 'Your token is invalid or expried';
         }
 
-        if($_POST['newpassword']!=$_POST['repassword']) {
+        if ($_POST['newpassword'] != $_POST['repassword']) {
             return 'Those passwords doesn\'t match';
         }
 
-        if(!$this->validator->check_password_strength($_POST['newpassword'])){
-            return 'Use '.MIN_PASS_LEN.' characters or more for your password.';
+        if (!$this->validator->check_password_strength($_POST['newpassword'])) {
+            return 'Use ' . MIN_PASS_LEN . ' characters or more for your password.';
         }
 
         try {
             $this->userModel->update_user($user->username, password_hash($_POST['newpassword'], PASSWORD_DEFAULT), $user->roles, $user->email);
             $this->resetModel->remove_by_validator($reseter->validator);
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             return $e->getMessage();
         }
 

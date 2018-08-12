@@ -9,16 +9,18 @@
 class Model
 {
     protected $db;
+
     function __construct($db)
     {
         try {
             $this->db = $db;
         } catch (PDOException $e) {
-            require APP.'controllers/error.php';
+            require APP . 'controllers/error.php';
             $page = new Errors();
-            $page ->error_message = 'Database problem: '.$e->getMessage();
-            $page ->index();
+            $page->error_message = 'Database problem: ' . $e->getMessage();
+            $page->index();
         }
     }
 }
+
 ?>

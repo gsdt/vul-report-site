@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: gsdt
@@ -7,14 +8,16 @@
  */
 class View
 {
-    public function render($name) {
-        require APP.'views/template/heading.php';
-        require APP.'views/template/menu-bar.php';
-        require APP.'views/'.$name.'.php';
-        require APP.'views/template/footer.php';
+    public function render($name)
+    {
+        require APP . 'views/template/heading.php';
+        require APP . 'views/template/menu-bar.php';
+        require APP . 'views/' . $name . '.php';
+        require APP . 'views/template/footer.php';
     }
 
-    public function add_html($name) {
-        require APP.'views/'.$name.'.php';
+    public function add_html($name)
+    {
+        require APP . 'views/' . $name . '.php';
     }
 }

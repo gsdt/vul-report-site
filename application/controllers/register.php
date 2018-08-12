@@ -5,9 +5,9 @@
  * Date: 08/08/2018
  * Time: 20:26
  */
-require_once APP.'core/Controller.php';
-require_once APP.'models/UserModel.php';
-require_once APP.'libs/ValidateUser.php';
+require_once APP . 'core/Controller.php';
+require_once APP . 'models/UserModel.php';
+require_once APP . 'libs/ValidateUser.php';
 
 class register extends Controller
 {
@@ -18,36 +18,36 @@ class register extends Controller
         $this->model = new UserModel($this->db);
     }
 
-    private function register() {
-        if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['repassword']) && isset($_POST['email'])) {
-            if(!$this->validator->is_valid_username($_POST['username'])){
+    private function register()
+    {
+        if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['repassword']) && isset($_POST['email'])) {
+            if (!$this->validator->is_valid_username($_POST['username'])) {
                 return 'Invalid username (^\w{5,}$).';
             }
-            if(!$this->validator->check_password_strength($_POST['password'])) {
-                return 'Use '.MIN_PASS_LEN.' characters or more for your password.';
+            if (!$this->validator->check_password_strength($_POST['password'])) {
+                return 'Use ' . MIN_PASS_LEN . ' characters or more for your password.';
             }
-            if($_POST['password'] != $_POST['repassword']) {
+            if ($_POST['password'] != $_POST['repassword']) {
                 return 'Those passwords doesn\'t match';
             }
-            if(!$this->validator->is_valid_email($_POST['email'])) {
+            if (!$this->validator->is_valid_email($_POST['email'])) {
                 return 'Invalid email address';
             }
 
             $user = $this->model->get_user_by('username', $_POST['username']);
-            if(isset($user->username)) {
+            if (isset($user->username)) {
                 return 'This username has been used.';
             }
 
             $user = $this->model->get_user_by('email', $_POST['email']);
-            if(isset($user->username)) {
+            if (isset($user->username)) {
                 return 'This email is used.';
             }
 
             try {
                 $this->model->add_user($_POST['username'], $_POST['password'], $_POST['email']);
                 return 'success';
-            }
-            catch (Exception $e){
+            } catch (Exception $e) {
                 return $e->getMessage();
             }
 
@@ -55,12 +55,12 @@ class register extends Controller
         return 'none';
     }
 
-    public function index() {
-        if($this->validator->is_logged_in()) {
+    public function index()
+    {
+        if ($this->validator->is_logged_in()) {
             $this->view->error_message = 'You have logged in.';
             $this->view->render('error/index');
-        }
-        else {
+        } else {
 
             $status = $this->register();
             if ($status === 'success') {
