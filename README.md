@@ -2,5 +2,5 @@
 
 To run this code on PhpStorm
 
-![alt text]("public/assets/phpstorm.png")
+![alt text]("https://github.com/gsdt/vul-report-site/blob/master/public/assets/phpstorm.png?raw=true")
 
