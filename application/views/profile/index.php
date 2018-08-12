@@ -87,6 +87,9 @@
                                         data-target="#exampleModalCenter">
                                     Delete this account
                                 </button>
+                                <a href="javascript:history.go(-1)" class="btn btn-outline-secondary">
+                                    Go back
+                                </a>
 
                                 <!-- Modal -->
                                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
@@ -116,6 +119,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                 </form>
             </div>
         </div>

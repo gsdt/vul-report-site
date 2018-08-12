@@ -1,10 +1,10 @@
 <div class="container">
     <!--vertical align on parent using my-auto-->
-    <div class="row h-100">
+    <div class="row h-100 ">
         <div class="col-sm-12 my-auto">
             <div class="container">
                 <form class="form-horizontal" autocomplete="off" role="form" method="POST" action="login">
-                    <div class="row">
+                    <div class="row ">
                         <div class="col-md-3"></div>
                         <div class="col-md-6 text-center">
                             <h2>Please Login <br><a class="small">or</a> <br><a href="register">create new account</a>

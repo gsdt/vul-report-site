@@ -45,10 +45,20 @@ class UserModel extends Model
 
     public function get_user_paging($limit, $offset)
     {
-        $sql = "SELECT * FROM users LIMIT $limit OFFSET $offset";
+        $sql = "SELECT * FROM users ORDER BY roles LIMIT $limit OFFSET $offset";
         $query = $this->db->prepare($sql);
         $query->execute();
         return $query->fetchAll();
+    }
+
+    public function count_user()
+    {
+        $sql = "SELECT COUNT(id) AS amount_of_users FROM users";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+
+        // fetch() is the PDO method that get exactly one result
+        return $query->fetch()->amount_of_users;
     }
 }
 
