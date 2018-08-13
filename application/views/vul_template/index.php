@@ -6,7 +6,7 @@
     template_list.push({
         id: "<?php echo $element->id ?>",
         name: "<?php echo $element->name ?>",
-        description: "<?php echo $element->description?>"
+        description: `<?php echo $element->description?>`
     });
     <?php } ?>
 
@@ -23,28 +23,24 @@
     function modal_create() {
         set_modal_value("Create new template", "*", "", "", "Create");
         $('#templateModal').modal('show');
+        $('button[name="delete"]').remove();
     }
 
     function modal_update(index) {
-        template = template_list[index];
+        var template = template_list[index];
         set_modal_value("Update template", template.id, template.name, template.description, "Update");
+        if ($('button[name="delete"]').length == 0) {
+            $('div[class="modal-footer"]').append('<button onclick="send_delete()" type="button" name="delete"  class="btn btn-outline-danger">Delete</button>');
+        }
         $('#templateModal').modal('show');
     }
-
-    // Variable to hold request
-    var request;
 
     function send_data() {
         // setup some local variables
         var $form = $('form');
 
-        // Let's select and cache all the fields
-        var $inputs = $form.find("input, textarea");
-
         // Serialize the data in the form
         var serializedData = $form.serialize();
-        console.log(serializedData);
-
 
         $.ajax({
             type: "POST",
@@ -59,14 +55,30 @@
                     });
                 }
                 else {
-                    $('#response').attr('class', 'text-danger');
-                    $('#response').html('<i class="fa fa-close"></i> ' + data);
-                    $("#templateModal").on("hidden.bs.modal", function () {
-                        $('#response').html("");
-                    });
+                    if (data == 'deleted') {
+                        $('#group-1').remove();
+                        $('#group-2').remove();
+                        $('#response').html('<i class="fa fa-check"></i> Done');
+                        $('#response').attr('class', 'text-success');
+                        $("#templateModal").on("hidden.bs.modal", function () {
+                            location.reload();
+                        });
+                    }
+                    else {
+                        $('#response').attr('class', 'text-danger');
+                        $('#response').html('<i class="fa fa-close"></i> ' + data);
+                        $("#templateModal").on("hidden.bs.modal", function () {
+                            $('#response').html("");
+                        });
+                    }
                 }
             }
         });
+    }
+
+    function send_delete() {
+        $('input[name="action"]').val("delete");
+        send_data();
     }
 </script>
 
@@ -101,13 +113,13 @@
                                     </div>
                                     <div class="modal-body">
                                         <form>
-                                            <div class="form-group">
+                                            <div id="group-1" class="form-group">
                                                 <label for="recipient-name" class="col-form-label">Vulnerable
                                                     name:</label>
                                                 <input type="text" autocomplete="off" name="name" class="form-control"
                                                        id="vul_name" value="" required>
                                             </div>
-                                            <div class="form-group">
+                                            <div id="group-2" class="form-group">
                                                 <label for="message-text" class="col-form-label">Description:</label>
                                                 <textarea name="description" class="form-control" id="vul_description">2342</textarea>
                                             </div>
@@ -122,6 +134,9 @@
                                                 </button>
                                                 <button onclick="send_data()" type="button" name="action"
                                                         class="btn btn-primary">Create
+                                                </button>
+                                                <button onclick="send_delete()" type="button" name="delete"
+                                                        class="btn btn-outline-danger">Delete
                                                 </button>
                                             </div>
                                         </form>

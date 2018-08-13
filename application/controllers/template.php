@@ -54,12 +54,15 @@ class template extends Controller
             return;
         }
         if (isset($_POST['action'])) {
-            if ($_POST['action'] === 'update' && !empty($_POST['id'])) {
+            if ($_POST['action'] != 'create') {
                 $user = $this->userModel->get_user_by('id', $_SESSION['id']);
                 $template = $this->templateModel->get_template($user->id, $_POST['id']);
                 if (!isset($template->id)) {
                     die("This template don't exist or you don't have permission.");
                 }
+            }
+
+            if ($_POST['action'] === 'update') {
                 try {
                     $this->templateModel->update_template($_POST['id'], $_POST['name'], $_POST['description']);
                     exit('success');
@@ -71,6 +74,14 @@ class template extends Controller
                 try {
                     $this->templateModel->create_template($_SESSION['id'], $_POST['name'], $_POST['description']);
                     exit('success');
+                } catch (Exception $e) {
+                    die($e->getMessage());
+                }
+            }
+            if ($_POST['action'] === 'delete') {
+                try {
+                    $this->templateModel->remove_template($_SESSION['id'], $_POST['id']);
+                    exit('deleted');
                 } catch (Exception $e) {
                     die($e->getMessage());
                 }

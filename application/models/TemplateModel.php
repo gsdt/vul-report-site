@@ -33,14 +33,14 @@ class TemplateModel extends Model
 //        $query->execute($parameters);
 //    }
 //
-//    public function remove_user_by($field, $value)
-//    {
-//        $sql = "DELETE FROM users WHERE $field = :value";
-//        $query = $this->db->prepare($sql);
-//        $parameters = array(':value' => $value);
-//
-//        $query->execute($parameters);
-//    }
+    public function remove_template($author_id, $template_id)
+    {
+        $sql = "DELETE FROM template WHERE author_id = :author_id AND id=:id";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':author_id' => $author_id, 'id' => $template_id);
+
+        $query->execute($parameters);
+    }
 
     public function get_template_paging($user_id, $limit, $offset)
     {

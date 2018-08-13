@@ -23,7 +23,7 @@ class profile extends Controller
         if (isset($_POST['newpassword']) || isset($_POST['email'])) {
             // to do this function, user must be provide password except admin
             if (!$this->validator->is_admin() && empty($_POST['oldpassword'])) {
-                return 'You must be provide current password.';
+                return 'You must provide current password.';
             }
             // admin account always provide password
             if ($user->roles === 'admin' && empty($_POST['oldpassword'])) {
