@@ -17,7 +17,7 @@ if ($validator->is_logged_in()) {
                 <a class="nav-link" href="#">Create report </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Template </a>
+                <a class="nav-link" href="/template">Template </a>
             </li>
             <?php if ($_SESSION['role'] === 'admin') { ?>
                 <li class="nav-item">

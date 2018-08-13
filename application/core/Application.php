@@ -14,6 +14,7 @@ class Application
     public static function run()
     {
         $uri = $_SERVER['REQUEST_URI'];
+
         $element = parse_url($uri);
 
         $path = $element['path'];

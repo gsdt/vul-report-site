@@ -1,5 +1,5 @@
 <?php
-require APP . 'core/Model.php';
+require_once APP . 'core/Model.php';
 define('MIN_PASS_LEN', 6);
 
 class UserModel extends Model

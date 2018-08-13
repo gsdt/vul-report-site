@@ -36,13 +36,16 @@ class account extends Controller
 
     public function index()
     {
+        if (!$this->validator->is_logged_in()) {
+            header('Location: /login');
+        }
         if (!$this->validator->is_admin()) {
             $this->view->error_message = 'You don\'t have permission.';
             $this->view->render('error/index');
         } else {
             $this->view->data = $this->get_data();
             $this->view->current_page = $this->get_page();
-            $this->view->max_page = ($this->model->count_user()) / 10;
+            $this->view->max_page = max(0, ($this->model->count_user()) / 10);
             if ($this->view->current_page > $this->view->max_page) {
                 $this->view->error_message = "Out of range.";
                 $this->view->render('error/index');

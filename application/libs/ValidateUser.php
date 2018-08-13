@@ -5,16 +5,24 @@
  * Date: 09/08/2018
  * Time: 11:43
  */
+require_once APP . 'models/UserModel.php';
+require_once APP . 'core/Controller.php';
 
-class ValidateUser
+class ValidateUser extends Controller
 {
     public function is_logged_in()
     {
         if (isset($_SESSION['username']) && isset($_SESSION['role'])) {
             if (in_array($_SESSION['role'], array('admin', 'user'))) {
-                return true;
+                $model = new UserModel($this->db);
+                $user = $model->get_user_by('id', $_SESSION['id']);
+                if ($user->username === $_SESSION['username']
+                    && $user->roles === $_SESSION['role']) {
+                    return true;
+                } else {
+                    header('Location: /logout');
+                }
             }
-            return false;
         }
         return false;
     }
@@ -25,7 +33,6 @@ class ValidateUser
             if (in_array($_SESSION['role'], array('admin'))) {
                 return true;
             }
-            return false;
         }
         return false;
     }

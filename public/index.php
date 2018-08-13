@@ -8,6 +8,7 @@
 
 define('ROOT', dirname(__DIR__) . DIRECTORY_SEPARATOR);
 define('APP', ROOT . 'application' . DIRECTORY_SEPARATOR);
+define('PUB', ROOT . 'public' . DIRECTORY_SEPARATOR);
 
 require(APP . '/core/Application.php');
 
