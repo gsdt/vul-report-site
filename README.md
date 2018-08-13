@@ -1,6 +1,4 @@
 # vul-report-site
 
-To run this code on PhpStorm
-
-![alt text]("./public/assets/phpstorm.png")
+To run this code on PhpStorn, please view setting image in `/public/assets/phpstorm.png`
 
