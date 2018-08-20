@@ -23,12 +23,22 @@
     function modal_create() {
         set_modal_value("Create new template", "*", "", "", "Create");
         $('#templateModal').modal('show');
+        if($('button[name="action"]').length>0) {
+            $('#action-area').append(`<button onclick="send_data()" type="button" name="action"
+                                                        class="btn btn-primary">Create
+                                                </button>`);
+        }
         $('button[name="delete"]').remove();
     }
 
     function modal_update(index) {
         var template = template_list[index];
         set_modal_value("Update template", template.id, template.name, template.description, "Update");
+        if($('button[name="action"]').length>0) {
+            $('#action-area').append(`<button onclick="send_data()" type="button" name="action"
+                                                        class="btn btn-primary">Create
+                                                </button>`);
+        }
         if ($('button[name="delete"]').length == 0) {
             $('div[class="modal-footer"]').append('<button onclick="send_delete()" type="button" name="delete"  class="btn btn-outline-danger">Delete</button>');
         }
@@ -60,6 +70,8 @@
                         $('#group-2').remove();
                         $('#response').html('<i class="fa fa-check"></i> Done');
                         $('#response').attr('class', 'text-success');
+                        $('button[name="action"]').remove();
+                        $('button[name="delete"]').remove();
                         $("#templateModal").on("hidden.bs.modal", function () {
                             location.reload();
                         });
@@ -128,7 +140,7 @@
                                             <div id="response" class="text-danger">
                                                 <!--                                                <i class="fa fa-close"></i>-->
                                             </div>
-                                            <div class="modal-footer">
+                                            <div id="button-area" class="modal-footer">
                                                 <button type="button" name="close" class="btn btn-secondary"
                                                         data-dismiss="modal">Close
                                                 </button>

@@ -1,3 +1,4 @@
+<html>
 <head>
     <title>Vulnerable Report System</title>
     <link rel="icon" href="https://www.w3schools.com/favicon.ico" type="image/x-icon">

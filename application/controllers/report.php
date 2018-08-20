@@ -9,7 +9,7 @@ require_once APP . 'core/Controller.php';
 require_once APP . 'models/UserModel.php';
 require_once APP . 'libs/ValidateUser.php';
 
-class profile extends Controller
+class report extends Controller
 {
     public function __construct()
     {
@@ -20,6 +20,10 @@ class profile extends Controller
 
     public function index()
     {
+        // check login status
+        if(!$this->validator->is_logged_in()) {
+            header('Location: /');
+        }
         $this->view->render("report/index");
     }
 }
