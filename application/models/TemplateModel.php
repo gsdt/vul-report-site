@@ -79,6 +79,17 @@ class TemplateModel extends Model
         // fetch() is the PDO method that get exactly one result
         return $query->fetch()->amount_of_template;
     }
+
+    public function search_template($text, $author_id) {
+        $sql = "SELECT * FROM template WHERE author_id=:author_id AND name LIKE :text_to_search";
+        $query = $this->db->prepare($sql);
+
+        $text = str_replace('%', '\%', $text);
+
+        $parameters = array(':author_id' => $author_id, ':text_to_search' => '%'.$text.'%');
+        $query->execute($parameters);
+        return $query->fetchAll();
+    }
 }
 
 ?>

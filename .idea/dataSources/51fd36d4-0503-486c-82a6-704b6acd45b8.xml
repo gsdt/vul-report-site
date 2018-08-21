@@ -1016,85 +1016,69 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="251" parent="232" name="author_id">
+    <column id="251" parent="232" name="date_modified">
       <Position>4</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="252" parent="232" name="date_modified">
-      <Position>5</Position>
       <DataType>datetime|0s</DataType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="253" parent="232" name="template_users_id_fk">
-      <ColNames>author_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="254" parent="232" name="PRIMARY">
+    <key id="252" parent="232" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="255" parent="232" name="template_users_id_fk">
-      <ColNames>author_id</ColNames>
-      <RefSchemaName>ReportDB</RefSchemaName>
-      <RefTableName>users</RefTableName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <column id="256" parent="233" name="id">
+    <column id="253" parent="233" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="257" parent="233" name="user_id">
+    <column id="254" parent="233" name="user_id">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="258" parent="233" name="report_id">
+    <column id="255" parent="233" name="report_id">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="259" parent="233" name="status">
+    <column id="256" parent="233" name="status">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="260" parent="233" name="PRIMARY">
+    <key id="257" parent="233" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="261" parent="234" name="id">
+    <column id="258" parent="234" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="262" parent="234" name="username">
+    <column id="259" parent="234" name="username">
       <Position>2</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
       <Collation>utf8_general_ci</Collation>
     </column>
-    <column id="263" parent="234" name="password">
+    <column id="260" parent="234" name="password">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
       <Collation>utf8_general_ci</Collation>
     </column>
-    <column id="264" parent="234" name="roles">
+    <column id="261" parent="234" name="roles">
       <Position>4</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
@@ -1102,90 +1086,90 @@
       <ColumnKind>normal</ColumnKind>
       <Collation>utf8_general_ci</Collation>
     </column>
-    <column id="265" parent="234" name="email">
+    <column id="262" parent="234" name="email">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
       <Collation>utf8_general_ci</Collation>
     </column>
-    <column id="266" parent="234" name="date_modified">
+    <column id="263" parent="234" name="date_modified">
       <Position>6</Position>
       <DataType>datetime|0s</DataType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="267" parent="234" name="users_username_uindex">
+    <index id="264" parent="234" name="users_username_uindex">
       <ColNames>username</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="268" parent="234" name="users_email_uindex">
+    <index id="265" parent="234" name="users_email_uindex">
       <ColNames>email</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="269" parent="234" name="PRIMARY">
+    <key id="266" parent="234" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="270" parent="234" name="users_username_uindex">
+    <key id="267" parent="234" name="users_username_uindex">
       <ColNames>username</ColNames>
       <UnderlyingIndexName>users_username_uindex</UnderlyingIndexName>
     </key>
-    <key id="271" parent="234" name="users_email_uindex">
+    <key id="268" parent="234" name="users_email_uindex">
       <ColNames>email</ColNames>
       <UnderlyingIndexName>users_email_uindex</UnderlyingIndexName>
     </key>
-    <column id="272" parent="235" name="id">
+    <column id="269" parent="235" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="273" parent="235" name="name">
+    <column id="270" parent="235" name="name">
       <Position>2</Position>
       <DataType>tinytext|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="274" parent="235" name="description">
+    <column id="271" parent="235" name="description">
       <Position>3</Position>
       <DataType>mediumtext|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="275" parent="235" name="date_created">
+    <column id="272" parent="235" name="date_created">
       <Position>4</Position>
       <DataType>datetime|0s</DataType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="276" parent="235" name="report_id">
+    <column id="273" parent="235" name="report_id">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="277" parent="235" name="level">
+    <column id="274" parent="235" name="level">
       <Position>6</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="278" parent="235" name="vulnerable_report_id_fk">
+    <index id="275" parent="235" name="vulnerable_report_id_fk">
       <ColNames>report_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="279" parent="235" name="PRIMARY">
+    <key id="276" parent="235" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="280" parent="235" name="vulnerable_report_id_fk">
+    <foreign-key id="277" parent="235" name="vulnerable_report_id_fk">
       <ColNames>report_id</ColNames>
       <RefSchemaName>ReportDB</RefSchemaName>
       <RefTableName>report</RefTableName>
