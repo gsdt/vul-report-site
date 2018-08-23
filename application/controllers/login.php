@@ -25,7 +25,7 @@ class login extends Controller
             $password = $_POST['password'];
 
             $user = $this->model->get_user_by('username', $username);
-            if (isset($user->username) && password_verify($password, $user->password)) {
+            if (isset($user->username) && $user->roles != 'banned' && password_verify($password, $user->password)) {
                 return $user;
             }
             return 'fail';

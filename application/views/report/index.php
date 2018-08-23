@@ -20,18 +20,16 @@
     var autocomplete_index = -1;
 
     function show_notification(status, message) {
-        if(status === 'success') {
+        if(status === 'done') {
+            $('#notification-message').attr('class', 'text-success');
             $('#notification-message').html(`
-            <div id="notification-message" class="text-success">
                     <i class="fa fa-check"></i></i> ${message}
-                </div>
             `);
         }
         else if(status === 'fail') {
+            $('#notification-message').attr('class', 'text-danger');
             $('#notification-message').html(`
-            <div id="notification-message" class="text-danger">
                     <i class="fa fa-check"></i></i> ${message}
-                </div>
             `);
         }
         $('#notification-modal').modal('show');
@@ -65,6 +63,7 @@
             data: data,
             success: function (response) {
                 console.log(response);
+                show_notification(response.status, response.message);
             }
         });
     }
@@ -283,7 +282,7 @@
             <div id="vul-list-area">
                 <div id="vul-0" class="border border-primary rounded pl-4 pr-4 pb-4 mb-4">
                     <div class="d-flex justify-content-end">
-                        <button onclick="remove_vulnerable(0)" type="button" class="close" aria-label="Close">
+                        <button tabindex="-1" onclick="remove_vulnerable(0)" type="button" class="close" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
